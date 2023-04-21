@@ -26,6 +26,7 @@ namespace Homework_number_19
                 bool isThereProtection = false;
                 int amountLifeHeros = 1000;
                 int amountLifeBoss = 1000;
+                int herosDamage = 30;
                 int maxBossDamage = 150;
                 int minBossDamage = 50;
                 int spiritDamage = 100;
@@ -74,6 +75,7 @@ namespace Homework_number_19
                     if (isThereProtection == false)
                     {
                         amountLifeHeros -= random.Next(minBossDamage, maxBossDamage);
+                        amountLifeBoss -= herosDamage;
                     }
                     else if (isThereProtection == true)
                     {
