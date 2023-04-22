@@ -11,6 +11,11 @@ namespace Homework_number_19
     {
         static void Main(string[] args)
         {
+            const int CommandCallSpirit = 0;
+            const int CommandAttackSpirit = 1;
+            const int CommandRift = 2;
+            const int CommandProtection = 3;
+
             Random random = new Random();
             int numberFights;
             int numberWins = 0;
@@ -37,7 +42,7 @@ namespace Homework_number_19
                 {
                     switch (random.Next(0, numberSpells))
                     {
-                        case 0:
+                        case CommandCallSpirit:
                             if (isSpiritSummoned == false)
                             {
                                 isSpiritSummoned = true;
@@ -45,7 +50,7 @@ namespace Homework_number_19
                             }
                             break;
 
-                        case 1:
+                        case CommandAttackSpirit:
                             if (isSpiritSummoned == true)
                             {
                                 amountLifeBoss -= spiritDamage;
@@ -53,7 +58,7 @@ namespace Homework_number_19
                             }
                             break;
 
-                        case 2:
+                        case CommandRift:
                             if (isThereProtection == false)
                             {
                                 amountLifeHeros += riftSpellLifeBoost;
@@ -61,7 +66,7 @@ namespace Homework_number_19
                             }
                             break;
 
-                        case 3:
+                        case CommandProtection:
                             if (isSpiritSummoned == true)
                             {
                                 amountLifeHeros -= spiritDamage;
@@ -86,6 +91,7 @@ namespace Homework_number_19
                     Console.WriteLine($"********************\n" +
                                       $"Количество жизни босса: {amountLifeBoss}\n" +
                                       $"Количество жизни героя: {amountLifeHeros}");
+                    Console.ReadKey();
                 }
 
                 if (amountLifeHeros <= 0 && amountLifeBoss <= 0)
