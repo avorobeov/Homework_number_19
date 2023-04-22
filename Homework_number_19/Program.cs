@@ -26,7 +26,6 @@ namespace Homework_number_19
             int minBossDamage = 50;
             int spiritDamage = 100;
             int riftSpellLifeBoost = 250;
-            int numberSpells = 4;
             int userInput;
 
             Console.Write($"Вы теневой маг по имени Алиас вам нужно победить боса который встретился вам на пути для этого у вас есть {4}" +
