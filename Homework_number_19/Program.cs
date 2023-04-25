@@ -18,7 +18,7 @@ namespace Homework_number_19
 
             Random random = new Random();
             bool isSpiritSummoned = false;
-            bool isThereProtection = false;
+            bool isProtection = false;
             int amountLifeHeros = 1000;
             int amountLifeBoss = 1000;
             int herosDamage = 30;
@@ -33,10 +33,10 @@ namespace Homework_number_19
 
             while (amountLifeHeros > 0 && amountLifeBoss > 0)
             {
-                Console.Write($"{CommandCallSpirit}) Рашамон – призывает теневого духа для нанесения атаки (Отнимает 100 хп игроку)\n" +
-                              $"{CommandAttackSpirit}) Хуганзакура(Может быть выполнен только после призыва теневого духа), наносит 100 ед.урона\n" +
-                              $"{CommandRift}) Межпространственный разлом – позволяет скрыться в разломе и восстановить 250 хп.Урон босса по вам не проходит\n" +
-                              $"{CommandProtection}) Мамарзакура(Может быть выполнен только после призыва теневого духа) наносит вам и босу урон в размере {spiritDamage}хп но даёт вам  не уязвимость на один ход" +
+                Console.Write($"{CommandCallSpirit}) Рашамон – призывает теневого духа для нанесения атаки (Отнимает {spiritDamage} хп игроку)\n" +
+                              $"{CommandAttackSpirit}) Хуганзакура(Может быть выполнен только после призыва теневого духа), наносит {spiritDamage} ед.урона\n" +
+                              $"{CommandRift}) Межпространственный разлом – позволяет скрыться в разломе и восстановить {amountLifeBoss} хп.Урон босса по вам не проходит\n" +
+                              $"{CommandProtection}) Мамарзакура(Может быть выполнен только после призыва теневого духа) наносит вам и босу урон в размере {spiritDamage}хп но даёт вам  не уязвимость на один ход\n\n" +
                               $"Укажите номер заклинания Которое вы хотите использовать:");
                 userInput = Convert.ToInt32(Console.ReadLine());
 
@@ -49,7 +49,7 @@ namespace Homework_number_19
                             amountLifeHeros -= spiritDamage;
 
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine($"Вы вызвали духа и получили урона ({isSpiritSummoned})хп ");
+                            Console.WriteLine($"Вы вызвали духа и получили урона ({spiritDamage})хп ");
                         }
                         break;
 
@@ -60,15 +60,15 @@ namespace Homework_number_19
                             isSpiritSummoned = false;
 
                             Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine($"Дух нанёс урон боссу ({isSpiritSummoned})хп");
+                            Console.WriteLine($"Дух нанёс урон боссу ({spiritDamage})хп");
                         }
                         break;
 
                     case CommandRift:
-                        if (isThereProtection == false)
+                        if (isProtection == false)
                         {
                             amountLifeHeros += riftSpellLifeBoost;
-                            isThereProtection = true;
+                            isProtection = true;
 
                             Console.ForegroundColor = ConsoleColor.Magenta;
                             Console.WriteLine($"Вы спрятались в разлом, восстановили {riftSpellLifeBoost} хп и получили щит на один ход");
@@ -80,7 +80,7 @@ namespace Homework_number_19
                         {
                             amountLifeHeros -= spiritDamage;
                             amountLifeBoss -= spiritDamage;
-                            isThereProtection = true;
+                            isProtection = true;
                             isSpiritSummoned = false;
 
                             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -92,24 +92,22 @@ namespace Homework_number_19
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine($"К сожалению не удалось использовать заклинание");
                         break;
-
                 }
 
-                if (isThereProtection == false)
+                if (isProtection == false)
                 {
                     amountLifeHeros -= random.Next(minBossDamage, maxBossDamage);
                     amountLifeBoss -= herosDamage;
                 }
-                else if (isThereProtection == true)
+                else if (isProtection == true)
                 {
-                    isThereProtection = false;
+                    isProtection = false;
                 }
 
-                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine($"********************\n" +
-                                  $"Количество жизни босса: {amountLifeBoss}\n" +
+                                  $"\nКоличество жизни босса: {amountLifeBoss}\n" +
                                   $"Количество жизни героя: {amountLifeHeros}");
-
             }
 
             if (amountLifeHeros <= 0 && amountLifeBoss <= 0)
